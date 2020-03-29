@@ -1,5 +1,13 @@
 # Welcome to Python Camp
 
-A place to share code, a lot of it for the Codesters platform.
+MARCH-APRIL 2020
 
-Some of this was for Coding with Kids camps.  Codesters has its own way of sharing code too.  
+A place to share code, some of it for exotic platforms such as:
+
+Codesters
+Pygame
+Repl.it (including Pygame on Repl.it)
+
+Purpose: 
+
+Coding with Kids camps.
