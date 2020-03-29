@@ -36,8 +36,7 @@ YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 
-# giving up on this one for now
-key_dict = {
+_trash_dict = {
     K_k: BLACK,
     K_r: RED,
     K_g: GREEN,
@@ -64,18 +63,22 @@ colors = [BLACK, RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA, WHITE]
 dvdLogo = pygame.image.load("camping.png")
 dvdLogoRect = dvdLogo.get_rect()
 
-while True:
+playing = True
 
-    event = pygame.event.get()
+while playing:
 
-    if event:
-        # print(event[0])
-        if event[0].type == KEYUP:
+    for event in pygame.event.get():
+
+        if event.type == KEYUP:
             # check console for this output
-            print(event[0].key)
-            if event[0].key in key_dict:
-                backgroundColor = key_dict[event[0].key]
+            print(event.key)
+            if event.key in key_dict:
+                backgroundColor = key_dict[event.key]
         # backgroundColor = random.choice(colors)
+
+        # useful if using same code outside of REPL
+        if event.type == pygame.QUIT:
+            playing = False
 
     screen.fill(backgroundColor)
 
