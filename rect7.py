@@ -5,7 +5,6 @@ This is based on the example rect7.py in the Pygame docs.
 https://pygame.readthedocs.io/en/latest/rect/rect.html
 
 """
-
 import pygame
 from pygame.locals import *
 from random import randint

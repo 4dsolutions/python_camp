@@ -13,7 +13,7 @@ purpose.
 def main():
     """Here's another typical place for a docstring"""  # triple quotes OK
 
-    your_name = input("Here there, what's your name? > ")
+    your_name = input("Hello there, what's your name? > ")
 
     print("Well hello there ", your_name, ".  And Hello World!", sep="") # no separator
 
