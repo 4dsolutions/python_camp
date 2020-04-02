@@ -4,6 +4,7 @@
 Created on Tue Dec  5 11:39:27 2017
 Modified May 31, 2018
 Modified Apr 18, 2019
+Modified Apr  2, 2020
 
 @author: Kirby Urner
 
@@ -22,14 +23,19 @@ w/r to a Users table.  Good review of DB API.
 
 Designed for interactive use from the REPL.
 
-We'll use context1.py for our db connection.
+We'll use connector.py for our db connection.
 """
 
-from context1 import DB
+from connector import DB
 import hashlib
+import os
+
+# modify this to suit, like settings.py
+PATH = "./data"
+filepath = os.path.join(PATH, "users.db")
 
 def check_tables():
-    with DB("users.db") as db:
+    with DB(filepath) as db:
         db.curs.execute("SELECT * FROM sqlite_master where type='table'")
         results = db.curs.fetchall()
         if results and "Users" in results[0]:
@@ -39,7 +45,7 @@ def check_tables():
             return False
     
 def fetch_all():
-    with DB("users.db") as db:
+    with DB(filepath) as db:
         if check_tables():
             db.curs.execute("SELECT * FROM Users")
             results = db.curs.fetchall()
@@ -49,7 +55,7 @@ def fetch_all():
                 print("Users table empty")
     
 def fetch_one(user_name):
-    with DB("users.db") as db:
+    with DB(filepath) as db:
         if check_tables():
             db.curs.execute("SELECT * FROM Users "
                             "WHERE username = ?", 
@@ -64,7 +70,7 @@ def fetch_one(user_name):
                 return None
         
 def zap_table():
-    with DB("users.db") as db:
+    with DB(filepath) as db:
         db.curs.execute("DROP TABLE IF EXISTS Users")
         
 def create_table():
