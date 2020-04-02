@@ -77,14 +77,14 @@ def create_table():
     if check_tables():
         return "Table already exists"
     else:
-        with DB("users.db") as db:
+        with DB(filepath) as db:
             db.curs.execute("CREATE TABLE Users "
                                   "(username text, "
                                   "password text)") 
         print("Table created")
     
 def add_one(user_name, pw):
-    with DB("users.db") as db:
+    with DB(filepath) as db:
         if check_tables():
             if fetch_one(user_name):
                 print("User already exists")
@@ -98,7 +98,7 @@ def add_one(user_name, pw):
             print("User added")
                         
 def delete_one(user_name):
-    with DB("users.db") as db:
+    with DB(filepath) as db:
         
         if not check_tables():
             return
@@ -114,7 +114,7 @@ def delete_one(user_name):
         
 def change_one(user_name, newpw):
     # http://www.sqlitetutorial.net/sqlite-update/
-    with DB("users.db") as db:
+    with DB(filepath) as db:
         if not check_tables():
             return
         if not fetch_one(user_name):
