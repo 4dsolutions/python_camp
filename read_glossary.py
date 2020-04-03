@@ -65,7 +65,6 @@ class DBcontext:
     def __exit__(self, *oops):
         DB.disconnect()
         if oops[0]:
-            print(stuff_happens)
             return False
         return True
 
@@ -78,7 +77,6 @@ def create_table():
          gl_definition text,
          updated_at int,
          updated_by text)""")
-
 
 with DBcontext() as dbx:
 

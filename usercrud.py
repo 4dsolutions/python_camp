@@ -5,6 +5,7 @@ Created on Tue Dec  5 11:39:27 2017
 Modified May 31, 2018
 Modified Apr 18, 2019
 Modified Apr  2, 2020
+Modified Apr  3, 2020
 
 @author: Kirby Urner
 
@@ -141,5 +142,55 @@ def auth(user_name, pw=None):
             print("Access Allowed!")
         else:
             print("Access Denied")
-        
+
+# used when input prompts are needed
+def fetch():
+    who = input("User? > ")
+    result = fetch_one(who) 
+    print("{}: {}".format(*result))
+
+def fetchall():
+    for rec in fetch_all():
+        print("{}: {}".format(*rec))
     
+def authenticate():
+    who = input("User? > ")
+    pw  = input("Password? > ")
+    auth(who, pw)        
+
+def addone():
+    who = input("User? > ")
+    pw  = input("Password? > ")
+    add_one(who, pw) 
+
+def remone():
+    who = input("User? > ")
+    delete_one(who)
+    
+def the_help():
+    print("$ python usercrud.py name\n"
+          "where name is:\n",
+          " ".join(menu_options.keys()) + "\n")
+ 
+menu_options = {
+        "fetchone": fetch,
+        "fetchall": fetchall,
+        "addone": addone,
+        "remove": remone,
+        "auth": authenticate,
+        "build": create_table, 
+        "zap": zap_table,
+        "--help": the_help,
+        "-h": the_help}
+    
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv)>1:
+        requested_op = sys.argv[1]
+        # print sys.argv
+        if requested_op in menu_options:
+            # don't just eval() whatever is passed in!
+            print("Selected: ", requested_op)
+            menu_options[requested_op]()
+    else:       
+        the_help()   

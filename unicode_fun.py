@@ -55,7 +55,7 @@ def main():
     print()
 
 def the_help():
-    print("$ unicode_fun.py name\n"
+    print("$ python unicode_fun.py name\n"
           "where name is:\n"
           "arabic, hebrew, greek, korean, emoji, all\n")
 
