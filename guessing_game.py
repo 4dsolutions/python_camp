@@ -34,7 +34,7 @@ while looping:
 
     else:
 
-        if guess.lower() == "quit":
+        if guess.isalpha() and guess.lower() == "quit":
             looping = False
 
     guess_counter += 1

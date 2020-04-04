@@ -144,6 +144,13 @@ def auth(user_name, pw=None):
             print("Access Denied")
 
 # used when input prompts are needed
+            
+# This module was originally meant to be imported
+# and used interactively after being imported.
+
+# Later I decided to add this additional functions
+# for operating usercrud.py from the command line
+
 def fetch():
     who = input("User? > ")
     result = fetch_one(who) 
@@ -170,7 +177,8 @@ def remone():
 def the_help():
     print("$ python usercrud.py name\n"
           "where name is:\n",
-          " ".join(menu_options.keys()) + "\n")
+          " ".join(menu_options.keys()) + "\n",
+          "If you zap, you need to build before you addone\n")
  
 menu_options = {
         "fetchone": fetch,
@@ -190,7 +198,7 @@ if __name__ == "__main__":
         # print sys.argv
         if requested_op in menu_options:
             # don't just eval() whatever is passed in!
-            print("Selected: ", requested_op)
+            # print("Selected: ", requested_op)
             menu_options[requested_op]()
     else:       
         the_help()   

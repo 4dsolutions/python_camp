@@ -45,13 +45,13 @@ def main():
     print("\nEMOJI")
     emoji()
     print("\n\nHEBREW")
-    # hebrew()
+    hebrew()
     print("\n\nGREEK & COPTIC")        
-    # greek()
+    greek()
     print("\n\nKOREAN")
-    # korean()
+    korean()
     print("\n\nARABIC")
-    # arabic()
+    arabic()
     print()
 
 def the_help():
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     import sys
     if len(sys.argv)>1:
         requested_unicode = sys.argv[1]
-        # print sys.argv
+        print(sys.argv)
         if requested_unicode in menu_options:
             # don't just eval() whatever is passed in!
             menu_options[requested_unicode]()
