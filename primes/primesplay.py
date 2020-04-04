@@ -28,7 +28,7 @@ def isprime(n):
 
     _cache is for internal cache of primes seen so far
     """
-    isprime._cache = set((2,))
+    isprime._cache = {2}
     if n in isprime._cache:     # see if on file already, screens 2
         return True
     if (0 == n%2) or (n == 1):  # if not two and yet even, or 1...
