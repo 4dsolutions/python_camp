@@ -1,3 +1,5 @@
 .DS_Store
 .replit
 .idea
+__pycache__
+.ipynb*
