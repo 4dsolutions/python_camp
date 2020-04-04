@@ -31,8 +31,8 @@ positive_texts = [
     "they love mary"
 ]
 # Same as above, but negative texts.
-negative_texts =  [
-    "we hate you", 
+negative_texts = [
+    "we hate you",
     "they hate us",
     "you are bad",
     "he is bad",
@@ -77,8 +77,7 @@ print(vectorizer.vocabulary_)
 # showing how often that word occurs in the text.
 training_vectors = vectorizer.transform(training_texts)
 
-
-# We'll do the same to our test texts. Each of these is a list 
+# We'll do the same to our test texts. Each of these is a list
 # of numbers too after this step.
 testing_vectors = vectorizer.transform(test_texts)
 
@@ -102,7 +101,8 @@ tree.export_graphviz(
     classifier,
     out_file='tree.dot',
     feature_names=vectorizer.get_feature_names(),
-) 
+)
+
 
 # We could hand code the rules ourselves. This function 
 # does exactly the same thing, but we had to explicitly 
@@ -115,20 +115,9 @@ def manual_classify(text):
         return "negative"
     return "positive"
 
+
 predictions = []
 for text in test_texts:
     prediction = manual_classify(text)
     predictions.append(prediction)
 print(predictions)
-
-
-
-
-
-
-
-
-
-
-
-

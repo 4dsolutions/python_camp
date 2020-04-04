@@ -11,25 +11,30 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello():
     body = '''<h1>Coasters!</h1><br />
     <img src="{}" width="320" height="320"><br />'''.format("/static/oakspark.jpg")
     return basic_html("Roller Coasters!", body)
 
+
 @app.route("/coasters")
 def coasters():
     return all_coasters()
+
 
 @app.route("/coasters/")
 def coasters_slash():
     return all_coasters()
 
+
 @app.route("/coasters/<coaster>")
 def coaster(coaster):
     print("one coaster...")
     return one_coaster(coaster)
-    
+
+
 def all_coasters():
     with DB() as db:
         query = ("SELECT name, park, yr_opened FROM Coasters "
@@ -38,11 +43,12 @@ def all_coasters():
         results = []
         for rec in db.cursor.fetchall():
             results.append(rec)
-            
-    body =  "<ul>"+ \
-            "\n".join(["<li>{}, {}, {}</li>".format(*data) for data in results]) + \
-            "</ul>"
+
+    body = "<ul>" + \
+           "\n".join(["<li>{}, {}, {}</li>".format(*data) for data in results]) + \
+           "</ul>"
     return basic_html("All Coasters", body)
+
 
 def one_coaster(coaster):
     with DB() as db:
@@ -50,32 +56,33 @@ def one_coaster(coaster):
             coaster = coaster.replace("'", "''")
         if coaster:
             query = ("SELECT * FROM Coasters "
-                     "WHERE name = '{}'".format(coaster))  
+                     "WHERE name = '{}'".format(coaster))
         db.get_coasters(query)
         print(query)
         results = []
-        
+
         # replace this is something is found
         body = "404 No Such Rollercoaster Found"
-        
+
         for rec in db.cursor.fetchall():
             results.append(rec)
-            fields =("Name:  {} <br /> ",
-               "Park:  {} <br /> ",
-               "State: {} <br /> ",
-               "Country: {} <br /> ",
-               "Duration: {} <br /> ", 
-               "Speed: {} <br />",
-               "Height: {} <br />",
-               "VertDrop: {} <br />", 
-               "Length: {} <br />",
-               "Yr_Opened: {} <br />",
-               "Inversions: {} <br />")
+            fields = ("Name:  {} <br /> ",
+                      "Park:  {} <br /> ",
+                      "State: {} <br /> ",
+                      "Country: {} <br /> ",
+                      "Duration: {} <br /> ",
+                      "Speed: {} <br />",
+                      "Height: {} <br />",
+                      "VertDrop: {} <br />",
+                      "Length: {} <br />",
+                      "Yr_Opened: {} <br />",
+                      "Inversions: {} <br />")
             body = ("\n".join(fields))
             body = body.format(*results[0])
-                        
+
     return basic_html(coaster, body)
-    
+
+
 def basic_html(title="Web Page", body="content goes here"):
     page = ("<!doctype html>\n"
             "<html>\n"
@@ -87,7 +94,7 @@ def basic_html(title="Web Page", body="content goes here"):
             "</body>\n"
             "</html>").format(title, body)
     return page
-        
+
+
 if __name__ == "__main__":
     app.run()
-    
