@@ -20,9 +20,12 @@ def food_emoji():
     print()
 
 def hebrew():
-    for codepoint in range(int('05D0', 16), 
-                           int('05DA', 16)):
-        print(chr(codepoint), end="")
+    global letters
+    letters = [chr(codepoint) 
+                for codepoint in 
+                    range(int('05D0', 16), 
+                          int('05EB', 16))]
+    print("".join(letters))
     print()
      
 def greek():
@@ -73,7 +76,7 @@ if __name__ == "__main__":
     import sys
     if len(sys.argv)>1:
         requested_unicode = sys.argv[1]
-        print(sys.argv)
+        # print(sys.argv)
         if requested_unicode in menu_options:
             # don't just eval() whatever is passed in!
             menu_options[requested_unicode]()
