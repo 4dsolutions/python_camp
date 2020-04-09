@@ -12,6 +12,7 @@ Bugs found:
 import math
 import random
 import time
+from fractions import Fraction
 
 def squares():
     print("Choose a number 1 through 100.")
@@ -27,13 +28,45 @@ def square_roots():
 
 def any_power():
     num = float(input("Choose a number > "))
-    exp = float(input("Raise to what power? > "))
+    exp = input("Raise to what power? > ")
+    if "/" in exp:
+        exp = float(Fraction(exp))
+    else:
+        exp = float(exp)
     print( pow(num, exp))
-    
+
+def evalFraction(f):
+  if '/' in f:
+    spl = f.split('/')
+    return float(spl[0])/float(spl[1])
+  else:
+    return f
+
+def isFrac(f):
+  if '/' in f:
+    print (f + " is a fraction")
+  else:
+    print(f + " is not a fraction")
+
+def get_decimal():
+    print("We are here")
+    The_answer = input('Would you like to find the decimal value of a fraction type "1" >>> ')
+    if (The_answer == "1"):
+      print ('Type a fraction like _/_ ')
+      fraction = input("What is your fraction >>> ")
+      isFrac(fraction)
+      if ('/' not in fraction):
+        while isFrac(fraction) == False:
+          fraction = input("What is your fraction >>> ")
+          isFrac(fraction)
+      print("Your fraction = ", evalFraction(fraction))
+
+
 # this could come in handy
 menu_options = {"1": squares, 
                 "2": square_roots,
                 "3": any_power,
+                "4": get_decimal,
                 "0": "exit"}
         
 def menu():
@@ -44,6 +77,7 @@ def menu():
         1. Squares 
         2. Square roots 
         3. Raise to Any Power
+        4. Get Decimal
         0. Exit
         
         Pick one please""")
@@ -52,7 +86,7 @@ def menu():
         # print("You picked", do_it)
         
         if not do_it in menu_options:
-            print("Please pick 1, 2, 3, 0")
+            print("Please pick 1, 2, 3, 4, 0")
             continue
             
         do_it = int(do_it)
@@ -65,6 +99,9 @@ def menu():
             square_roots()
         elif do_it == 3:
             any_power()
+        elif do_it == 4:
+            get_decimal()
             
-    
-menu()
+if __name__ == "__main__":    
+    menu()
+
