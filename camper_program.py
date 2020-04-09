@@ -25,9 +25,15 @@ def square_roots():
     root = math.sqrt(num)
     print("The square root of", num, "is", root)
 
+def any_power():
+    num = float(input("Choose a number > "))
+    exp = float(input("Raise to what power? > "))
+    print( pow(num, exp))
+    
 # this could come in handy
 menu_options = {"1": squares, 
                 "2": square_roots,
+                "3": any_power,
                 "0": "exit"}
         
 def menu():
@@ -37,6 +43,7 @@ def menu():
         print("""
         1. Squares 
         2. Square roots 
+        3. Raise to Any Power
         0. Exit
         
         Pick one please""")
@@ -45,7 +52,7 @@ def menu():
         # print("You picked", do_it)
         
         if not do_it in menu_options:
-            print("Please pick 1, 2, 0")
+            print("Please pick 1, 2, 3, 0")
             continue
             
         do_it = int(do_it)
@@ -56,5 +63,8 @@ def menu():
             squares()
         elif do_it == 2:
             square_roots()
+        elif do_it == 3:
+            any_power()
+            
     
 menu()

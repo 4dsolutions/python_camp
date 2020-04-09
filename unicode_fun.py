@@ -39,9 +39,9 @@ def korean():
     print()
         
 def arabic():
-    print([chr(codepoint) 
+    print(" ".join([chr(codepoint) 
     for codepoint in range(int('0681', 16), 
-                           int('06AF', 16))])
+                           int('06AF', 16))]))
     print()
 
 def main():
@@ -58,9 +58,10 @@ def main():
     print()
 
 def the_help():
+    options = " ".join(sorted(menu_options.keys()))
     print("$ python unicode_fun.py name\n"
-          "where name is:\n"
-          "arabic, hebrew, greek, korean, emoji, all\n")
+          "where name is:\n",
+          options + "\n")
 
 menu_options = {
         "arabic": arabic,
@@ -68,6 +69,7 @@ menu_options = {
         "greek": greek,
         "korean": korean,
         "emoji": emoji, 
+        "food" : food_emoji,
         "all": main,
         "--help": the_help,
         "-h": the_help}
