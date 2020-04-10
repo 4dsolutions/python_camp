@@ -10,8 +10,6 @@ Bugs found:
 """
 
 import math
-import random
-import time
 from fractions import Fraction
 
 
