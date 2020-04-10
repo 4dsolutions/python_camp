@@ -62,7 +62,7 @@ def get_decimal():
         fraction = input("What is your fraction >>> ")
         isFrac(fraction)
         if "/" not in fraction:
-            while isFrac(fraction) == False:
+            while isFrac(fraction) is False:
                 fraction = input("What is your fraction >>> ")
                 isFrac(fraction)
         print("Your fraction = ", evalFraction(fraction))
@@ -96,7 +96,7 @@ def menu():
         do_it = input("    >>> ")
         # print("You picked", do_it)
 
-        if not do_it in menu_options:
+        if do_it not in menu_options:
             print("Please pick 1, 2, 3, 4, 0")
             continue
 
