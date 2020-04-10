@@ -93,25 +93,32 @@ def menu():
         Pick one please"""
         )
 
-        do_it = input("    >>> ")
-        # print("You picked", do_it)
+        try:
+            do_it = input("    >>> ")
+            # print("You picked", do_it)
 
-        if do_it not in menu_options:
-            print("Please pick 1, 2, 3, 4, 0")
+            if do_it not in menu_options:
+                print("Please pick 1, 2, 3, 4, 0")
+                continue
+
+            do_it = int(do_it)
+
+            if do_it == 0:
+                looping = False
+            elif do_it == 1:
+                squares()
+            elif do_it == 2:
+                square_roots()
+            elif do_it == 3:
+                any_power()
+            elif do_it == 4:
+                get_decimal()
+        except KeyboardInterrupt:
+            print("\nReceived Ctrl-C. Exiting.")
+            return
+        except ValueError as e:
+            print("Error: %r" % e)
             continue
-
-        do_it = int(do_it)
-
-        if do_it == 0:
-            looping = False
-        elif do_it == 1:
-            squares()
-        elif do_it == 2:
-            square_roots()
-        elif do_it == 3:
-            any_power()
-        elif do_it == 4:
-            get_decimal()
 
 
 if __name__ == "__main__":
