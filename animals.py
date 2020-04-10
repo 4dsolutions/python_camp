@@ -20,6 +20,18 @@ class Mammal(Animal):
     def eat(self, food):
         self.stomach.append(food)
         
+    def __call__(self, food):
+        # lets you feed an animal like dog("food")
+        self.eat(food)
+        
+    def __getitem__(self, num):
+        # changes how [ ] works
+        return self.stomach[num]
+    
+    def __add__(self, other):
+        # operator overloading!
+        return self.name + " meets " + other.name
+        
     def barf(self):
         contents = " ".join(self.stomach)
         self.stomach = [ ]

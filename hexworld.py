@@ -81,7 +81,7 @@ class Game:
         # here is how we escape from the while True loop below
         if self.player.points > 100:
             raise Winner
-        if self.turns > 10:
+        if self.turns > self.max_turns:
             raise Loser
             
         print("You are in the", self.the_map.rooms[self.room])
