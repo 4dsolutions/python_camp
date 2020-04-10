@@ -175,7 +175,7 @@ def remone():
     delete_one(who)
     
 def the_help():
-    print("$ python usercrud.py name\n"
+    print("$ python -m usercrud name\n"
           "where name is:\n",
           " ".join(menu_options.keys()) + "\n",
           "If you zap, you need to build before you addone\n")

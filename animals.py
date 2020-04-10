@@ -48,7 +48,7 @@ class Platypus(Mammal):
         return "quack!" * n
     
     def __repr__(self):
-        return 'Dog("{}", {})'.format(self.name, self.age)
+        return 'Platypus("{}", {})'.format(self.name, self.age)
     
     
 def test_dog():
