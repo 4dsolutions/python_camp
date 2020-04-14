@@ -11,6 +11,9 @@ class Animal:
     pass
 
 class Mammal(Animal):
+    """
+    Demonstrates the use of special names
+    """
 
     def __init__(self, nm, how_old):
         self.name = nm

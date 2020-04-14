@@ -7,6 +7,7 @@ hexadecimal ranges
 
 @author: Kirby Urner
 """
+import sys
 
 def emoji():
     for codepoint in range(int('1F600', 16), int('1F620', 16)):
@@ -57,9 +58,37 @@ def main():
     arabic()
     print()
 
+def html():
+    """
+    This is a fancy advanced option.  The point of saving all the
+    output to an HTML file is maybe your browser will do an even 
+    better job of rendering these unicode characters, worth a try.
+    
+    https://kite.com/python/answers/how-to-redirect-print-output-to-a-text-file-in-python
+    https://www.blog.pythonlibrary.org/2016/06/16/python-101-redirecting-stdout/
+    """
+    original = sys.stdout
+    sys.stdout = open("unicode.html", "w", encoding='utf-8')
+    print("<html><head><title>Unicode Stuff</title></head>")
+    print("<body>")
+    main() # everything will go to the file this way
+    print("</body>")
+    print("</html>")
+    sys.stdout.flush()
+    sys.stdout.close()
+    sys.stdout = original
+    # Now lets put in some line breaks, since HTML
+    # pays little attention to newlines \n
+    with open("unicode.html", "r", encoding='utf-8') as the_file:
+        text = the_file.read().replace("\n", "<br />")
+    with open("unicode.html", "w", encoding='utf-8') as the_file2:
+        the_file2.write(text)
+    print("OK, open unicode.html in browser")
+    
+    
 def the_help():
     options = " ".join(sorted(menu_options.keys()))
-    print("$ python unicode_fun.py name\n"
+    print("$ python -m unicode_fun name\n"
           "where name is:\n",
           options + "\n")
 
@@ -71,6 +100,7 @@ menu_options = {
         "emoji": emoji, 
         "food" : food_emoji,
         "all": main,
+        "html": html,
         "--help": the_help,
         "-h": the_help}
     
