@@ -81,8 +81,8 @@ def html():
     # pays little attention to newlines \n
     with open("unicode.html", "r", encoding='utf-8') as the_file:
         text = the_file.read().replace("\n", "<br />")
-    with open("unicode.html", "w", encoding='utf-8') as the_file2:
-        the_file2.write(text)
+    with open("unicode.html", "w", encoding='utf-8') as the_file:
+        the_file.write(text)
     print("OK, open unicode.html in browser")
     
     
