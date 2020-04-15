@@ -7,18 +7,17 @@ hexadecimal ranges
 
 @author: Kirby Urner
 """
-import sys
 
 def emoji():
     for codepoint in range(int('1F600', 16), int('1F620', 16)):
         print(chr(codepoint), end=" ")
-    print()
+    print("----")
 
 def food_emoji():
     emoji = [chr(codepoint) for codepoint in range(127812, 127857)]    
     for e in emoji:
         print(e, end=" ")
-    print()
+    print("----")
 
 def hebrew():
     global letters
@@ -27,36 +26,51 @@ def hebrew():
                     range(int('05D0', 16), 
                           int('05EB', 16))]
     print("".join(letters))
-    print()
+    print("----")
      
 def greek():
     for codepoint in range(int('03D0', 16), int('03FF', 16)):
         print(chr(codepoint), end="")
-    print()
+    print("----")
         
 def korean():
     for codepoint in range(int('BB00', 16), int('BBAF', 16)):
         print(chr(codepoint), end="")
-    print()
+    print("----")
         
 def arabic():
     print(" ".join([chr(codepoint) 
     for codepoint in range(int('0681', 16), 
                            int('06AF', 16))]))
-    print()
+    print("----")
 
 def main():
-    print("\nEMOJI")
+    print("EMOJI:\n\n")
     emoji()
-    print("\n\nHEBREW")
+    print("HEBREW:\n\n")
     hebrew()
-    print("\n\nGREEK & COPTIC")        
+    print("GREEK & COPTIC:\n\n")        
     greek()
-    print("\n\nKOREAN")
+    print("KOREAN:\n\n")
     korean()
-    print("\n\nARABIC")
+    print("ARABIC:\n\n")
     arabic()
     print()
+
+html_top = """<!DOCTYPE html>
+<html>
+<head>
+<title>Unicode Stuff</title>
+</head>
+<body>
+
+<h1>Unicode Stuff</h1>
+<p>"""
+# Make an HTML sandwich!
+
+html_bottom = """</p>
+</body>
+</html>"""
 
 def html():
     """
@@ -69,20 +83,24 @@ def html():
     """
     original = sys.stdout
     sys.stdout = open("unicode.html", "w", encoding='utf-8')
-    print("<html><head><title>Unicode Stuff</title></head>")
-    print("<body>")
-    main() # everything will go to the file this way
-    print("</body>")
-    print("</html>")
+    
+    # HTML sandwich
+    print(html_top)
+    main() # sandwich meat!
+    print(html_bottom, end="")
+    
     sys.stdout.flush()
     sys.stdout.close()
     sys.stdout = original
+    
     # Now lets put in some line breaks, since HTML
-    # pays little attention to newlines \n
+    # pays no attention to newlines \n
     with open("unicode.html", "r", encoding='utf-8') as the_file:
-        text = the_file.read().replace("\n", "<br />")
+        text = the_file.read().replace(":\n\n", "<br/>").replace("----","<br/><br/>")
+        
     with open("unicode.html", "w", encoding='utf-8') as the_file:
         the_file.write(text)
+        
     print("OK, open unicode.html in browser")
     
     
