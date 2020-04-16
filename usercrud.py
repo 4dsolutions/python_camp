@@ -54,6 +54,8 @@ def fetch_all():
                 return tuple(results)
             else:
                 print("Users table empty")
+        else:
+            print("No table")
     
 def fetch_one(user_name):
     with DB(filepath) as db:
@@ -69,6 +71,8 @@ def fetch_one(user_name):
                     print("Not found")
             except TypeError:
                 return None
+        else:
+            print("No table")
         
 def zap_table():
     with DB(filepath) as db:
@@ -97,6 +101,8 @@ def add_one(user_name, pw):
                             (user_name, hashpw))
             db.conn.commit()
             print("User added")
+        else:
+            print("No tables")
                         
 def delete_one(user_name):
     with DB(filepath) as db:
@@ -152,13 +158,19 @@ def auth(user_name, pw=None):
 # for operating usercrud.py from the command line
 
 def fetch():
-    who = input("User? > ")
-    result = fetch_one(who) 
-    print("{}: {}".format(*result))
-
+    try:
+        who = input("User? > ")
+        result = fetch_one(who) 
+        print("{}: {}".format(*result))
+    except TypeError:
+        print("build and addone before fetching")
+        
 def fetchall():
-    for rec in fetch_all():
-        print("{}: {}".format(*rec))
+    try:
+        for rec in fetch_all():
+            print("{}: {}".format(*rec))
+    except TypeError:
+        print("build and addone before fetching")
     
 def authenticate():
     who = input("User? > ")
