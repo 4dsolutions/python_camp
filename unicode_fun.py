@@ -8,6 +8,16 @@ hexadecimal ranges
 @author: Kirby Urner
 """
 
+def cherokee():
+    """
+    U+13A0 – U+13FF   (5024–5119)
+    http://www.alanwood.net/unicode/cherokee.html
+    (page only shows up to 13F4)
+    """
+    for codepoint in range(int('13A0', 16), int('13F4', 16)):
+        print(chr(codepoint), end="")
+    print("----")
+    
 def emoji():
     for codepoint in range(int('1F600', 16), int('1F620', 16)):
         print(chr(codepoint), end=" ")
@@ -20,11 +30,15 @@ def food_emoji():
     print("----")
 
 def hebrew():
+    """
+    http://www.alanwood.net/unicode/hebrew.html
+    U+0590 – U+05FF   (1424–1535)
+    """
     global letters
     letters = [chr(codepoint) 
                 for codepoint in 
                     range(int('05D0', 16), 
-                          int('05EB', 16))]
+                          int('05EA', 16))]
     print("".join(letters))
     print("----")
      
@@ -39,9 +53,13 @@ def korean():
     print("----")
         
 def arabic():
+    """
+    http://www.alanwood.net/unicode/arabic.html
+    U+0600 – U+06FF   (1536–1791)
+    """
     print(" ".join([chr(codepoint) 
-    for codepoint in range(int('0681', 16), 
-                           int('06AF', 16))]))
+    for codepoint in range(int('0600', 16), 
+                           int('06FF', 16))]))
     print("----")
 
 def main():
@@ -56,6 +74,8 @@ def main():
     print("ARABIC:\n\n")
     arabic()
     print()
+    print("CHEROKEE:\n\n")
+    cherokee()
 
 html_top = """<!DOCTYPE html>
 <html>
@@ -105,13 +125,14 @@ def html():
     
     
 def the_help():
-    options = " ".join(sorted(menu_options.keys()))
+    options = "\n".join(sorted(menu_options.keys()))
     print("$ python -m unicode_fun name\n"
           "where name is:\n",
-          options + "\n")
+          options + "\n", sep="")
 
 menu_options = {
         "arabic": arabic,
+        "cherokee": cherokee,
         "hebrew": hebrew,
         "greek": greek,
         "korean": korean,
